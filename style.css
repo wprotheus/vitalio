@@ -1,0 +1,254 @@
+/* =======================
+   1. Configurações Globais
+   ======================= */
+   body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e5cebb;
+  /*#44B8EB
+    #DDC3B6
+    #E5CEBB
+    #534662
+    #6060C4
+    #6061BD */
+}
+
+/* =======================
+   2. Cabeçalho
+   ======================= */
+.header {
+    background: linear-gradient(to bottom right, #38c0f0 35%, #5c5fca 71%);
+    color: white;
+    text-align: center;
+    font-weight: bolder;
+    padding: 40px 20px;
+}
+
+.header-title {
+    font-size: 2.5rem;
+    font-weight: bolder;
+    margin: 0;
+}
+
+.header-subtitle {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-top: 10px;
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .header-title {
+        font-size: 2rem;
+    }
+
+    .header-subtitle {
+        font-size: 1rem;
+    }
+}
+
+/* =======================
+   3. Botões
+   ======================= */
+.cta-button, .buy-blend {
+    display: inline-block;
+    background-color: #9898d7;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.cta-button:hover, .buy-blend:hover {
+    background-color: #7a7ab3;
+}
+
+/* Animação de pulso */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.cta-button {
+    animation: pulse 1.5s infinite;
+}
+
+/* =======================
+   4. Carrossel
+   ======================= */
+#carousel-content-text {
+    background-color: rgba(152, 152, 215, 0.4);
+    padding: 26px;
+    border-radius: 8px;
+}
+
+.carousel-inner img {
+    width: 100%;
+    max-width: 206px;
+    max-height: 178px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+}
+
+/* =======================
+   5. Depoimentos
+   ======================= */
+.testimonial-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.testimonial-card {
+    background-color: rgba(152, 152, 215, 0.3);
+    border-radius: 8px;
+    padding: 17px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+    max-width: 400px;
+    flex: 1;
+}
+
+.testimonial-card img {
+    width: 305px;
+    height: 440px;
+    border-radius: 4ch;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+.testimonial-card h2 {
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+}
+
+.testimonial-card p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* =======================
+   6. Produtos
+   ======================= */
+.produtos-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.produto {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    border-radius: 40px;
+    box-shadow: 0px 16px 16px rgba(152, 152, 252, 0.6);
+    padding: 0 0 20px 0;
+    text-align: center;
+    background-color: #fff;
+}
+
+.produto img {
+    max-width: 100%;
+    height: auto;
+}
+
+.produto-info h3 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #9898d7;
+    margin: 0 0 10px 0;
+    padding: 10px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+}
+
+.produto-info button {
+    background-color: #55c46a;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.produto-info button:hover {
+    background-color: #5c5fca;
+}
+
+:root {
+    --primary-color: #9898d7;
+    --secondary-color: #5c5fca;
+    --text-color: #333;
+    --background-light: #eff4ff;
+    --shadow-color: rgba(152, 152, 252, 0.6);
+}
+
+/* =======================
+   7. Botão "Voltar ao Topo"
+   ======================= */
+#scrollToTop {
+    display: none; 
+    position: fixed; 
+    bottom: 20px; 
+    right: 10px; 
+    z-index: 9999; 
+    width: 40px; 
+    height: 40px; 
+    background: rgba(0, 0, 0, 0.6); 
+    border-radius: 50%; 
+    border: none; 
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+#scrollToTop img {
+    width: 100%;
+    height: auto;
+    filter: invert(1); /* Deixa o ícone branco */
+}
+
+#scrollToTop:hover {
+    transform: scale(1.1);
+}
+
+/* Quando o botão deve aparecer */
+#scrollToTop.show {
+    display: block;
+    opacity: 1;
+}
+
+/* =======================
+   8. Ícones Sociais
+   ======================= */
+.footer-social {
+    display: flex;
+    gap: 20px; /* Espaçamento entre os ícones */
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.social-icon img {
+    width: 26px; 
+    height: 26px;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover img {
+    transform: scale(1.2); /* Efeito de zoom no hover */
+}
