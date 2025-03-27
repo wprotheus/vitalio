@@ -1,76 +1,82 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
     const carousel = document.getElementById('carouselExampleCaptions');
     const tituloBeneficio = document.getElementById('titulo-beneficio');
-    const scrollToTopButton = document.getElementById('scrollToTop');
     const faqQuestions = document.querySelectorAll('.faq-question');
-    const nav = document.querySelector('nav'); // Seleciona o menu de navegação
+    const scrollToTopButton = document.getElementById('scrollToTop');
+    const nav = document.querySelector('nav'); // Menu de navegação principal
 
-    // Função para rolar a página até o topo com animação suave
-    if (scrollToTopButton) {
-        scrollToTopButton.addEventListener('click', function () {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
+    /**
+     * Função para mostrar/esconder o botão "Voltar ao Topo"
+     */
+    const toggleScrollToTopButton = () => {
+        if (!scrollToTopButton || !nav) return; // Garante que os elementos existam
+        const navIsOutOfView = nav.getBoundingClientRect().bottom < 0; // Verifica se o menu saiu da tela
+        scrollToTopButton.style.display = navIsOutOfView ? 'flex' : 'none'; // Alterna visibilidade do botão
+    };
 
-    // Função para mostrar ou esconder o botão de voltar ao topo
-    function toggleScrollToTopButton() {
-        const navRect = nav.getBoundingClientRect(); // Obtém a posição da navbar
-        const navIsOutOfView = navRect.bottom < 0; // Verifica se a navbar está fora da visualização
+    /**
+     * Adiciona evento de clique ao botão "Voltar ao Topo"
+     */
+    scrollToTopButton?.addEventListener('click', (e) => {
+        e.preventDefault(); // Evita comportamento padrão do link <a>
+        window.scrollTo({ top: 0, behavior: 'smooth' }); // Rola suavemente para o topo
+    });
 
-        if (navIsOutOfView) {
-            scrollToTopButton.style.display = 'block'; // Mostra o botão
-        } else {
-            scrollToTopButton.style.display = 'none'; // Esconde o botão
-        }
-    }
+    /**
+     * Atualiza o título de benefícios com base no item ativo do Carousel
+     */
+    const updateCarouselBenefitTitle = () => {
+        if (!carousel || !tituloBeneficio) return; // Proteção contra ausência de elementos
 
-    // Adiciona o evento de rolagem para monitorar o movimento da página
-    window.addEventListener('scroll', toggleScrollToTopButton);
+        const activeItem = document.querySelector('.carousel-item.active'); // Item ativo do carousel
+        if (activeItem) {
+            const beneficioId = activeItem.dataset.caption; // Pega o valor do atributo data-caption
+            const imageCaption= beneficioId
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase();
+            if (imageCaption) {
+                // Atualiza o título do benefício
+                tituloBeneficio.textContent = imageCaption.toUpperCase();
 
-    // Inicializa a visibilidade do botão com base na posição inicial
-    toggleScrollToTopButton();
-
-    // Carousel: Atualiza o título e exibe os benefícios corretos ao mudar de slide
-    if (carousel) {
-        carousel.addEventListener('slid.bs.carousel', function () {
-            const activeItem = document.querySelector('.carousel-item.active');
-
-            if (activeItem) {
-                const imageCaption = activeItem.querySelector('.image-caption').textContent.trim();
-                const beneficioId = imageCaption
-                    .normalize("NFD")
-                    .replace(/[\u0300-\u036f]/g, "")
-                    .toLowerCase();
-
-                if (tituloBeneficio) {
-                    tituloBeneficio.textContent = imageCaption.toUpperCase();
-                }
-
-                document.querySelectorAll('.beneficio-list').forEach(ul => {
-                    ul.hidden = true;
+                // Gerencia a visibilidade das listas de benefícios
+                document.querySelectorAll('.beneficio-list').forEach((list) => {
+                    // Compara o atributo data-name com o caption atual
+                    if (list.dataset.name === imageCaption.toLowerCase()) {
+                        list.hidden = false;
+                    } else {
+                        list.hidden = true;
+                    }
                 });
-
-                const beneficio = document.querySelector(`.beneficio-list[data-name="${beneficioId}"]`);
-                if (beneficio) {
-                    beneficio.hidden = false;
-                }
             }
-        });
-    }
+        }
+    };
 
-    // FAQ: Mostra ou esconde a resposta ao clicar na pergunta
+    /**
+     * Evento para atualizar o título ao mudar o slide no Carousel
+     */
+    carousel?.addEventListener('slid.bs.carousel', updateCarouselBenefitTitle);
+
+    // Atualiza o título e as listas de benefício imediatamente quando a página for carregada
+    updateCarouselBenefitTitle();
+
+    /**
+     * Expande ou colapsa FAQs
+     */
     faqQuestions.forEach((question) => {
         question.addEventListener('click', () => {
             const currentAnswer = question.nextElementSibling;
-            const allAnswers = document.querySelectorAll('.faq-answer');
 
-            allAnswers.forEach((answer) => {
-                if (answer !== currentAnswer) {
-                    answer.style.display = 'none';
-                }
+            // Alterna visibilidade para a resposta atual
+            document.querySelectorAll('.faq-answer').forEach((answer) => {
+                answer.style.display = answer === currentAnswer && answer.style.display !== 'block' ? 'block' : 'none';
             });
-
-            currentAnswer.style.display = currentAnswer.style.display === 'block' ? 'none' : 'block';
         });
     });
+
+    // Adiciona evento de rolagem para gerenciar a visibilidade do botão "Voltar ao Topo"
+    window.addEventListener('scroll', toggleScrollToTopButton);
+
+    // Inicializa a visibilidade corretamente no carregamento
+    toggleScrollToTopButton();
 });
