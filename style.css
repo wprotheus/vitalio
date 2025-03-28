@@ -1,30 +1,152 @@
-/* =======================
-   1. Configurações Globais
-   ======================= */
-   body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #e5cebb;
-  /*#44B8EB
+/* #e5cebb
+   #44B8EB
     #DDC3B6
     #E5CEBB
     #534662
     #6060C4
     #6061BD */
+/* RESET DE ESTILOS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* =======================
-   2. Cabeçalho
-   ======================= */
+body {
+    font-family: Arial, sans-serif, Helvetica;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(152, 152, 215, 0.35);
+    overflow-x: hidden;
+}
+
+/* Botão "Voltar ao Topo" */
+#scrollToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%; /* Botão circular */
+    display: none; /* Inicialmente escondido */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 9999;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Adiciona hover ao botão */
+#scrollToTop:hover {
+    background-color: #e5cebb; /* Fundo no hover */
+    transform: scale(1.1); /* Zoom suave no hover */
+}
+
+/* Estilo para o ícone dentro do botão (imagem SVG) */
+#scrollToTop img {
+    width: 60%; /* Largura do ícone proporcional */
+    height: auto;
+    display: block;
+    margin: auto;
+    transform: rotate(270deg)matrix(1, 0, 0, -1, 0, 0);
+}
+
+/* NavBar */
+#navbar {
+    background-color: #5c5fca;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.17);
+    z-index: 9999;
+    top: 0;
+    flex-wrap: wrap;
+    font-size: 1.7em;
+}
+
+/* Botões NavBar */
+.btn-group{
+    margin-right: 10%;
+}
+
+
+/* Navegação */
+.nav-scroller {
+    position: relative;
+    z-index: 2;
+    height: 2.75rem;
+    overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+    display: flex;
+    flex-wrap: nowrap;
+    padding-bottom: 1rem;
+    margin-top: -1px;
+    overflow-x: auto;
+    text-align: center;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Botão de chamada para ação */
+.cta-button {
+    display: inline-block;
+    background-color: #9898d7;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 17px;
+    border-radius: 8px;
+    text-align: center;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.cta-button:hover {
+    background-color: #7a7ab3;
+}
+
+.img-especial{
+    width: 107px;
+    height: 107px;
+}
+
+hr {
+    margin-left: 25%;
+    width: 50%;
+    height: 5px;
+    border: 1px;
+    border-top: 5px solid #6205a4;
+    background-color: #5c5fca;
+    animation: pulse 2.6s infinite;
+}
+
+/* Imagens .svg */
+.img-100p {
+    width: 44px;
+    height: 44px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Cabeçalho */
 .header {
-    background: linear-gradient(to bottom right, #38c0f0 35%, #5c5fca 71%);
+    background: linear-gradient(206deg, #9898d7 35%, #5c5fca 71%);
     color: white;
     text-align: center;
     font-weight: bolder;
     padding: 40px 20px;
 }
 
+/* Título e subtítulo */
 .header-title {
     font-size: 2.5rem;
     font-weight: bolder;
@@ -38,81 +160,133 @@
     opacity: 0.9;
 }
 
-@media (max-width: 768px) {
-    .header-title {
-        font-size: 2rem;
-    }
-
-    .header-subtitle {
-        font-size: 1rem;
-    }
+#biomas {
+    padding: 10px;
+    box-shadow: 0 16px 16px rgba(152, 152, 252, 0.1);
+    color: #5c5fca;
+    font-weight: bolder;
+    background-color: rgba(96, 96, 196, 0.3);
 }
 
-/* =======================
-   3. Botões
-   ======================= */
-.cta-button, .buy-blend {
-    display: inline-block;
-    background-color: #9898d7;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    font-size: 18px;
-    border-radius: 8px;
+#modo-de-uso {
+    background-color: rgba(229, 206, 187, 0.2);
+    padding: 10px;
     text-align: center;
+    box-shadow: 0 16px 16px rgba(96, 96, 196, 0.2);
 }
 
-.cta-button:hover, .buy-blend:hover {
-    background-color: #7a7ab3;
+#texto-especial {
+    height: 62px;
+    position: relative;
+    border:  5px solid #9898d7;
+    width: 100%;
+    box-shadow: 1px 1px 4px #5c5fca;
 }
 
-/* Animação de pulso */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+#diferencial {
+    background-color: rgba(152, 152, 252, 0.1);
+
+    padding: 10px;
+    box-shadow: 0 16px 16px rgba(152, 152, 252, 0.3);
 }
 
-.cta-button {
-    animation: pulse 1.5s infinite;
+#titulo-beneficio {
+    width: 120%;
+    margin-left: -10%;
+    color: white;
+    font-weight: bolder;
+    background-color: rgba(96, 96, 196, 0.5);
 }
 
-/* =======================
-   4. Carrossel
-   ======================= */
+#comprar {
+    color: #5c5fca;
+    font-weight: bolder;
+    background-color: rgba(229, 206, 187, 0.2);
+    padding: 10px;
+    text-align: center;
+    box-shadow: 5px 16px 16px #5C5FAC, 5px 10px 20px #9898d7 inset;
+}
+
+/* Container do carrossel e conteúdo */
 #carousel-content-text {
-    background-color: rgba(152, 152, 215, 0.4);
+    background-color: rgba(152, 152, 215, 0.4); /* Fundo semi-transparente */
     padding: 26px;
     border-radius: 8px;
 }
 
-.carousel-inner img {
-    width: 100%;
-    max-width: 206px;
-    max-height: 178px;
-    object-fit: cover;
-    display: block;
-    margin: 0 auto;
+
+/* Imagens do carrossel */
+.carousel-inner .carousel-item img {
+    width: 260px; /* Define largura fixa */
+    height: 200px; /* Define altura fixa */
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem deformar */
+    display: block; /* Evita espaçamentos indesejados */
+    margin: auto; /* Centraliza a imagem */
 }
 
-/* =======================
-   5. Depoimentos
-   ======================= */
-.testimonial-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-}
-
-.testimonial-card {
-    background-color: rgba(152, 152, 215, 0.3);
-    border-radius: 8px;
-    padding: 17px;
+/* Legenda das imagens */
+.image-caption {
     text-align: center;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
-    max-width: 400px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #5C5FAC;
+}
+
+/* Botões do carrossel */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 8%; /* Ajusta a largura da área clicável */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(100%); /* Deixa as setas brancas para maior contraste */
+    width: 3rem; /* Aumenta o tamanho */
+    height: 3rem;
+}
+
+
+/* Título fixo dentro do texto */
+.text-content h2 {
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+    background-color: #9898d7;
+    border-radius: 8px;
+    padding: 7px;
+}
+
+/* Ocultar elementos */
+.hidden {
+    display: none;
+}
+
+/* Benefícios */
+.text-content ul {
+    padding: 0 1px 0 17px;
+    overflow-y: unset;
+    flex-grow: 0.8;
+    list-style-type: none;
+    text-align: justify;
+}
+
+/* Container de depoimentos */
+#depoimentos {
+    color: #5c5fca;
+    font-weight: bolder;
+    background-color: rgba(229, 206, 187, 0.7);
+    padding: 20px;
+    text-align: center;
+}
+
+/* Cartões de depoimento */
+.testimonial-card {
+    background-color: transparent;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 5px 10px 20px #5C5FAC, 5px 5px 10px #9898d7 inset;
     flex: 1;
 }
 
@@ -121,28 +295,63 @@
     height: 440px;
     border-radius: 4ch;
     margin-bottom: 15px;
-    object-fit: cover;
+    object-fit: fill;
 }
 
-.testimonial-card h2 {
-    font-size: 1.6rem;
-    margin-bottom: 5px;
+/* Bloco de compra */
+.buy-blend {
+    display: inline-block;
+    background-color: #9898d7;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    text-align: center;
 }
 
-.testimonial-card p {
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 10px;
+#de-por {
+    text-decoration: line-through;
+    color: #888;
+    font-weight: bold;
 }
 
-/* =======================
-   6. Produtos
-   ======================= */
+/* Produtos */
+.produto {
+    width: 48%;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+/* Estilos para o botão de compra */
+.comprar {
+    background-color: #fff5e6;
+    color: #333;
+    padding: 25px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.comprar h2 {
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #6205a4;
+}
+
+.produtos {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
 .produtos-container {
     display: flex;
     gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
+    justify-content: center; /* Centraliza os cards */
+    flex-wrap: wrap; /* Permite que os cards se ajustem para novas linhas em telas pequenas */
 }
 
 .produto {
@@ -155,12 +364,16 @@
     box-shadow: 0px 16px 16px rgba(152, 152, 252, 0.6);
     padding: 0 0 20px 0;
     text-align: center;
-    background-color: #fff;
+    background-color: #fff; /* Adiciona fundo branco aos cards */
 }
 
 .produto img {
     max-width: 100%;
-    height: auto;
+    height: auto; /* Preserva a proporção das imagens */
+}
+
+.produto-info {
+    flex-grow: 1;
 }
 
 .produto-info h3 {
@@ -174,9 +387,29 @@
     border-top-right-radius: 40px;
 }
 
+.produto-info p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 5px 0;
+}
+
+#buy-id1, #buy-id2 {
+    margin: 0 40px 0 40px;
+}
+
+.produto-info del {
+    color: #999;
+    font-size: 14px;
+}
+
+.produto-info strong {
+    color: #5c5fca;
+    font-weight: bold;
+}
+
 .produto-info button {
     background-color: #55c46a;
-    color: white;
+    color: rgb(255, 255, 255);
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
@@ -190,65 +423,156 @@
     background-color: #5c5fca;
 }
 
-:root {
-    --primary-color: #9898d7;
-    --secondary-color: #5c5fca;
-    --text-color: #333;
-    --background-light: #eff4ff;
-    --shadow-color: rgba(152, 152, 252, 0.6);
+/* Estilo para FAQ */
+#faq {
+    width: 62%; /* Ajusta a largura */
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(96, 96, 196, 0.3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+#faq-titulo {
+    color: #5c5fca;
+    font-weight: 900;
+    width: 120%;
+    background-color: rgba(96, 96, 196, 0.5);
+    margin-left: -10%;
+    padding: 10px;
+}
+.faq-item .faq-question {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
 }
 
-/* =======================
-   7. Botão "Voltar ao Topo"
-   ======================= */
-#scrollToTop {
-    display: none; 
-    position: fixed; 
-    bottom: 20px; 
-    right: 10px; 
-    z-index: 9999; 
-    width: 40px; 
-    height: 40px; 
-    background: rgba(0, 0, 0, 0.6); 
-    border-radius: 50%; 
-    border: none; 
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 0.3s ease, transform 0.2s ease;
+.faq-item p {
+    color: #666;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: justify;
 }
 
-#scrollToTop img {
+.faq-item {
+    margin-bottom: 15px;
+}
+
+.faq-question {
+    background-color: #9898d7;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    border: none;
     width: 100%;
-    height: auto;
-    filter: invert(1); /* Deixa o ícone branco */
+    text-align: left;
+    cursor: pointer;
+    border-radius: 5px;
+    outline: none;
 }
 
-#scrollToTop:hover {
-    transform: scale(1.1);
+.faq-question:hover {
+    background-color: #5c5fca;
 }
 
-/* Quando o botão deve aparecer */
-#scrollToTop.show {
-    display: block;
-    opacity: 1;
+.faq-answer {
+    display: none;
+    background-color: rgba(229, 206, 187, 0.55);
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
 }
 
-/* =======================
-   8. Ícones Sociais
-   ======================= */
+#vitalio {
+    width: 44px;
+}
+
+#vitalio-h2{
+    color: #5c5fca;
+    font-weight: bolder;
+    padding: 4px;
+}
+
+/* Estilo do Footer */
+#sobre {
+    margin: 0;
+    background: #e5cebb;
+    text-align: center;
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+}
+
 .footer-social {
     display: flex;
+    margin-right: 17px;
     gap: 20px; /* Espaçamento entre os ícones */
     justify-content: center;
     margin-top: 20px;
 }
 
 .social-icon img {
-    width: 26px; 
-    height: 26px;
-    transition: transform 0.3s ease;
+    width: 35px; /* Ajuste o tamanho do ícone */
+    height: 35px;
+    transition: transform 0.3s ease; /* Efeito de transição ao passar o mouse */
 }
 
 .social-icon:hover img {
-    transform: scale(1.2); /* Efeito de zoom no hover */
+    transform: scale(1.5); /* Efeito de zoom no hover */
+}
+
+.pagamento img {
+    width: 62px; /* Ajuste o tamanho do ícone */
+}
+
+/* RESPONSIVIDADE */
+@media (min-width: 768px) {
+    /* Rodapé com layout em colunas */
+    .footer .row {
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+    }
+
+    .footer-links {
+        text-align: center;
+        margin-top: 0;
+    }
+
+    .fabricacao, .contato {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    /* Benefício e ajuste de FAQ em telas menores */
+    #titulo-beneficio {
+        font-size: 1.5rem;
+    }
+
+    .faq-question {
+        font-size: 1rem;
+        padding: 0.75rem;
+    }
+
+    .faq-answer {
+        font-size: 0.9rem;
+        padding: 0.75rem;
+    }
+
+    .footer h2 {
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-social img {
+        margin: 0 5px;
+    }
+
+    .fabricacao, .contato {
+        font-size: 0.85rem;
+    }
+
+    .footer-links a {
+        font-size: 0.85rem;
+    }
 }
